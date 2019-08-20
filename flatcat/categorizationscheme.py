@@ -616,7 +616,7 @@ class MorphUsageProperties(object):
             if i == 0:
                 # Prefix inherits left perplexity of leftmost parent
                 l_ppl = self._contexts[old_morphs[0]].left_perplexity
-                if not uncapped_ppl:
+                if not uncapped_ppl and max_contexts is not None:
                     l_ppl = min(l_ppl, max_ppl)
             else:
                 # Otherwise assume that the morph doesn't appear in any
@@ -624,7 +624,7 @@ class MorphUsageProperties(object):
                 l_ppl = 1.0
             if i == len(new_morphs) - 1:
                 r_ppl = self._contexts[old_morphs[-1]].right_perplexity
-                if not uncapped_ppl:
+                if not uncapped_ppl and max_contexts is not None:
                     r_ppl = min(r_ppl, max_ppl)
             else:
                 r_ppl = 1.0
